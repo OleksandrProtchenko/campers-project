@@ -1,0 +1,6 @@
+.main {
+  width: 100vw;
+  height: calc(100vh - 72px);
+  background: url("/Home.jpg") no-repeat center center;
+  background-size: cover;
+}
