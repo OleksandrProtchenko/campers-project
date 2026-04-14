@@ -21,9 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${inter.className}`}>
-        <div
-          style={{ maxWidth: "1440px", margin: "0 auto", position: "relative" }}
-        >
+        <div className="container">
           <Header />
           {children}
         </div>

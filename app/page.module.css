@@ -8,3 +8,52 @@
   background: url("/Home.jpg") no-repeat center center;
   background-size: cover;
 }
+.container {
+  width: 1313px;
+  margin: 0 auto;
+  padding-top: 300px;
+}
+.title,
+.subtitle {
+  font-family: inherit;
+  font-weight: 600;
+  color: #f7f7f7;
+}
+.title {
+  font-size: 48px;
+  line-height: 0.66667;
+  margin-bottom: 16px;
+}
+.subtitle {
+  font-size: 24px;
+  line-height: 1.33333;
+  margin-bottom: 40px;
+}
+.btnHome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: transparent;
+  outline: transparent;
+
+  border-radius: 200px;
+  padding: 16px 43.5px;
+
+  background: #829b91;
+  transition: background 0.3s ease;
+
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #fff;
+
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      background: #6d7b75;
+    }
+  }
+}
