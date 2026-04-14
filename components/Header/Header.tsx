@@ -3,25 +3,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import css from "./Header.module.css";
-import { useRouter } from "next/navigation";
 
 export default function Header() {
-  const router = useRouter();
-
-  const handleClick = () => {
-    router.push("/");
-  };
   return (
     <header className={css.header}>
       <div className={css.container}>
-        <Image
-          onClick={handleClick}
-          className={css.logo}
-          src="/Logo.png"
-          alt="Logo"
-          width={136}
-          height={16}
-        />
+        <Link href="/">
+          <Image
+            className={css.logo}
+            src="/Logo.png"
+            alt="Logo"
+            width={136}
+            height={16}
+          />
+        </Link>
         <nav className={css.nav}>
           <ul className={css.navList}>
             <li className={css.navItem}>
