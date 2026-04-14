@@ -48,7 +48,9 @@ export default function CatalogItem() {
             <p>Alcove</p>
           </li>
         </ul>
-        <button className={css.catalogItemButton}>Show more</button>
+        <button type="button" className={css.catalogItemButton}>
+          Show more
+        </button>
       </div>
     </li>
   );

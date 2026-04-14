@@ -1,6 +1,10 @@
-.main {
-  width: 100vw;
-  height: calc(100vh - 72px);
+.homePage {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
   background: url("/Home.jpg") no-repeat center center;
   background-size: cover;
 }

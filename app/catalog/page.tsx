@@ -4,9 +4,11 @@ import css from "./Catalog.module.css";
 
 export default function Catalog() {
   return (
-    <main className={css.main}>
+    <div className={css.catalog}>
       <Aside />
-      <CatalogList />
-    </main>
+      <main className={css.main}>
+        <CatalogList />
+      </main>
+    </div>
   );
 }

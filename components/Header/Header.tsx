@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import css from "./Header.module.css";
-import { useRouter } from "next/dist/client/components/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const router = useRouter();
