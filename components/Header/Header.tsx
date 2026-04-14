@@ -1,12 +1,21 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import css from "./Header.module.css";
+import { useRouter } from "next/dist/client/components/navigation";
 
 export default function Header() {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/");
+  };
   return (
     <header className={css.header}>
       <div className={css.container}>
         <Image
+          onClick={handleClick}
           className={css.logo}
           src="/Logo.png"
           alt="Logo"
