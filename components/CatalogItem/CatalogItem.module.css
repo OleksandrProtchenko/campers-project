@@ -8,6 +8,7 @@
   border-radius: 16px;
 }
 .catalogItemImage {
+  border-radius: 16px;
   object-fit: cover;
 }
 .catalogItemContent {
@@ -21,12 +22,13 @@
   font-size: 24px;
   line-height: 1.33333;
   color: #101828;
+  margin-bottom: 8px;
 }
 .catalogItemTitle {
   font: inherit;
-  margin-bottom: 8px;
 }
 .catalogItemPrice {
+  vertical-align: top;
 }
 .catalogItemInfo {
   display: flex;
@@ -42,11 +44,16 @@
   gap: 4px;
 }
 .catalogItemDescription {
+  max-width: 525px;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
   color: #475467;
   margin-bottom: 24px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .catalogItemListFeatures {
   display: flex;
@@ -62,33 +69,4 @@
   background: #f2f4f7;
   border-radius: 100px;
   padding: 12px 18px;
-}
-.catalogItemButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 10px;
-
-  border-radius: 200px;
-  padding: 16px 43.5px;
-  background: #829b91;
-  outline: transparent;
-  border: transparent;
-
-  font-family: inherit;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  color: #fff;
-
-  transition: background 0.3s ease;
-  cursor: pointer;
-
-  @media (hover: hover) {
-    &:hover {
-      background: #6d7b75;
-    }
-  }
 }

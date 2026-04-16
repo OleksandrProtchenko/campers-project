@@ -2,4 +2,35 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  margin-bottom: 40px;
+}
+.loadMoreBtn {
+  margin: 0 auto;
+  gap: 4px;
+  border-radius: 200px;
+  border: 1px solid #dadde1;
+  background: #fff;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #101828;
+  transition:
+    0.3s border-color ease,
+    background 0.3s ease;
+  outline: transparent;
+
+  @media (hover: hover) {
+    &:hover {
+      background: #fff;
+      border-color: #6d7b75;
+    }
+  }
+
+  &:active,
+  &:focus-visible {
+    background: #fff;
+    border-color: #6d7b75;
+  }
 }
