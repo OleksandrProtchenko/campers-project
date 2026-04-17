@@ -39,7 +39,8 @@ export default function CamperGallery({ camper }: CamperGalleryProps) {
         modules={[FreeMode, Navigation, Thumbs]}
         className={`${css.mySwiper2} ${css.mbottomSwiper}`}
       >
-        {camper.gallery.length > 0 &&
+        {camper.gallery &&
+          camper.gallery.length > 0 &&
           camper.gallery.map((image, index) => {
             return (
               <SwiperSlide key={image.id}>
@@ -70,7 +71,8 @@ export default function CamperGallery({ camper }: CamperGalleryProps) {
         modules={[FreeMode, Navigation, Thumbs]}
         className={`${css.mySwiper} ${css.mbottomSwiper}`}
       >
-        {camper.gallery.length > 0 &&
+        {camper.gallery &&
+          camper.gallery.length > 0 &&
           camper.gallery.map((image) => {
             return (
               <SwiperSlide key={image.id}>
