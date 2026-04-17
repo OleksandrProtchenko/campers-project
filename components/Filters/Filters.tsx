@@ -61,6 +61,15 @@ export default function Filters({ initialFilters }: FiltersProps) {
     staleTime: 5 * 60 * 1000,
     refetchOnMount: false,
   });
+
+  if (isError && !filtersData) {
+    return <div>Failed to load filters</div>;
+  }
+
+  if (!filtersData) {
+    return <div>Loading filters...</div>;
+  }
+
   return (
     <form onSubmit={handleSubmit} className={css.form}>
       <fieldset

@@ -105,3 +105,41 @@ export const getCampersFilters =
       throw new Error("Failed to fetch campers by filters");
     }
   };
+
+interface Review {
+  id: string;
+  camperId: string;
+  reviewer_name: string;
+  reviewer_rating: number;
+  comment: string;
+  createdAt: string;
+}
+
+export const getReviewsByCamperId = async (id: string): Promise<Review[]> => {
+  try {
+    const { data } = await API.get<Review[]>(`/campers/${id}/reviews`);
+    return data;
+  } catch {
+    throw new Error("Failed to fetch reviews by camper ID");
+  }
+};
+
+interface BookingPostData {
+  name: string;
+  email: string;
+}
+
+export const postBooking = async (
+  id: string,
+  bookingData: BookingPostData,
+): Promise<string> => {
+  try {
+    const { data } = await API.post<{ message: string }>(
+      `/campers/${id}/booking-requests`,
+      bookingData,
+    );
+    return data.message;
+  } catch {
+    throw new Error("Failed to post booking");
+  }
+};

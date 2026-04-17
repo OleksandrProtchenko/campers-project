@@ -3,8 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import css from "./Header.module.css";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
+
+  const isHome = pathname === "/";
+  const isCatalog = pathname.startsWith("/catalog");
+
   return (
     <header className={css.header}>
       <div className={css.container}>
@@ -21,12 +27,24 @@ export default function Header() {
         <nav className={css.nav}>
           <ul className={css.navList}>
             <li className={css.navItem}>
-              <Link className={css.navLink} href="/">
+              <Link
+                className={
+                  isHome ? `${css.navLink} ${css.navLinkActive}` : css.navLink
+                }
+                href="/"
+              >
                 Home
               </Link>
             </li>
             <li className={css.navItem}>
-              <Link className={css.navLink} href="/catalog">
+              <Link
+                className={
+                  isCatalog
+                    ? `${css.navLink} ${css.navLinkActive}`
+                    : css.navLink
+                }
+                href="/catalog"
+              >
                 Catalog
               </Link>
             </li>

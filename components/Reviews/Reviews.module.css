@@ -7,7 +7,6 @@
 }
 
 .iconStar {
-  fill: #ffc531;
   width: 16px;
   height: 16px;
 }
@@ -30,7 +29,15 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border: 1px solid black;
+  background: #eaecf0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1;
+  color: #829b91;
+  flex-shrink: 0;
 }
 .reviewHeader {
   display: flex;

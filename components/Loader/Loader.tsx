@@ -11,6 +11,7 @@ export default function Loader() {
           className={css.image}
           width={200}
           height={100}
+          loading="eager"
         />
       </div>
     </div>

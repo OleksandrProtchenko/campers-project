@@ -1,9 +1,9 @@
 import { Camper, getCamperById } from "@/api/campersApi";
-import CamperPage from "./CamperPage.client";
 import Reviews from "@/components/Reviews/Reviews";
 import CamperDetails from "@/components/CamperDetails/CamperDetails";
 import CamperGallery from "@/components/CamperGallery/CamperGallery";
 import css from "./CamperPage.module.css";
+import NotFound from "@/components/NotFound/NotFound";
 
 interface Props {
   params: Promise<{ camperId: string }>;
@@ -16,7 +16,7 @@ export default async function CamperById({ params }: Props) {
   try {
     camperData = await getCamperById(camperId);
   } catch {
-    return <div>Camper not found</div>;
+    return <NotFound />;
   }
 
   return (
@@ -25,7 +25,7 @@ export default async function CamperById({ params }: Props) {
         <CamperGallery camper={camperData} />
         <CamperDetails camper={camperData} />
       </div>
-      <Reviews />
+      <Reviews camperId={camperId} />
     </div>
   );
 }
