@@ -2,6 +2,7 @@ import { FaStar } from "react-icons/fa";
 import { FaRegMap } from "react-icons/fa6";
 import css from "./CamperDetails.module.css";
 import { Camper } from "@/api/campersApi";
+import normalizeAmenity from "@/utils/normalizeAmenity";
 
 interface CamperDetailsProps {
   camper: Camper;
@@ -26,14 +27,7 @@ export default function CamperDetails({ camper }: CamperDetailsProps) {
             </div>
           </div>
           <p className={css.price}>€{camper.price}</p>
-          <p className={css.description}>
-            {camper.description}
-            ideal choice for solo travelers or couples seeking a compact and
-            efficient way to explore the open roads. This no-frills yet reliable
-            panel truck offers the essentials for a comfortable journey, making
-            it the perfect companion for those who value simplicity and
-            functionality.
-          </p>
+          <p className={css.description}>{camper.description}</p>
         </div>
         <div className={css.camperComplictations}>
           <h3 className={css.camperComplictationsTitle}>Vehicle details</h3>
@@ -42,7 +36,7 @@ export default function CamperDetails({ camper }: CamperDetailsProps) {
               camper.amenities.map((amenity) => {
                 return (
                   <li key={amenity} className={css.camperComplictationsItem}>
-                    {amenity}
+                    {normalizeAmenity(amenity)}
                   </li>
                 );
               })}

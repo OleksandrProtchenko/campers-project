@@ -9,10 +9,8 @@ export default function Home() {
         <h2 className={css.subtitle}>
           You can find everything you want in our catalog
         </h2>
-        <Link href="/catalog">
-          <button className={css.btnHome} type="button">
-            View Now
-          </button>
+        <Link href="/catalog" className={css.buttonLink}>
+          View Now
         </Link>
       </div>
     </div>

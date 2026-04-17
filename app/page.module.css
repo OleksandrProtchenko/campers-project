@@ -29,18 +29,18 @@
   line-height: 1.33333;
   margin-bottom: 40px;
 }
-.btnHome {
-  display: flex;
+.buttonLink {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-color: transparent;
-  outline: transparent;
+  flex-direction: row;
+  gap: 10px;
 
   border-radius: 200px;
-  padding: 16px 43.5px;
-
+  padding: 15px 43.5px;
   background: #829b91;
-  transition: background 0.3s ease;
+  outline: transparent;
+  border: 1px solid transparent;
 
   font-family: inherit;
   font-weight: 500;
@@ -49,11 +49,17 @@
   letter-spacing: -0.01em;
   color: #fff;
 
+  transition: background 0.3s ease;
   cursor: pointer;
 
   @media (hover: hover) {
     &:hover {
       background: #6d7b75;
     }
+  }
+
+  &:active,
+  &:focus-visible {
+    background: #6d7b75;
   }
 }

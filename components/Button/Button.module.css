@@ -31,4 +31,9 @@
   &:focus-visible {
     background: #6d7b75;
   }
+
+  &:disabled {
+    background: #6d7b75;
+    cursor: not-allowed;
+  }
 }

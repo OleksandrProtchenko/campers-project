@@ -1,24 +1,28 @@
-import CatalogList from "@/components/CatalogList/CatalogList";
-import css from "./Catalog.module.css";
-import Filters from "@/components/Filters/Filters";
 import { Suspense } from "react";
+
+import { Metadata } from "next";
+import CatalogContent from "@/components/CatalogContent/CatalogContent";
 import Loader from "@/components/Loader/Loader";
-import { getCampersFilters } from "@/api/campersApi";
+
+export const metadata: Metadata = {
+  title: "Camper catalog",
+  description:
+    "Browse the camper catalog, apply filters, and load more cards using Load More.",
+  alternates: {
+    canonical: "/catalog",
+  },
+  openGraph: {
+    title: "Camper catalog | TravelTrucks",
+    description:
+      "Find a camper by location, body type, engine, and transmission.",
+    url: "/catalog",
+  },
+};
 
 export default async function Catalog() {
-  const initialFilters = await getCampersFilters();
   return (
-    <div className={css.catalog}>
-      <aside>
-        <Suspense fallback={<Loader />}>
-          <Filters initialFilters={initialFilters} />
-        </Suspense>
-      </aside>
-      <main className={css.main}>
-        <Suspense fallback={<Loader />}>
-          <CatalogList />
-        </Suspense>
-      </main>
-    </div>
+    <Suspense fallback={<Loader />}>
+      <CatalogContent />
+    </Suspense>
   );
 }

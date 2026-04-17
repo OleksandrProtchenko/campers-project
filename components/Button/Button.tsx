@@ -15,12 +15,14 @@ export default function Button({
   class: className,
   text,
   icon,
+  disabled,
 }: ButtonProps) {
   return (
     <button
       onClick={onClick}
       type={type}
       className={`${css.button} ${className}`}
+      disabled={disabled}
     >
       {icon}
       {text}

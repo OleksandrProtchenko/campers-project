@@ -10,6 +10,8 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import Loader from "../Loader/Loader";
 import normalizeFilters from "@/utils/normalizeFilters";
 
+const PER_PAGE = 4;
+
 export default function CatalogList() {
   const searchParams = useSearchParams();
 
@@ -24,12 +26,12 @@ export default function CatalogList() {
     isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: ["campers", filters],
-    queryFn: ({ pageParam = 1 }) => getCampers(filters, undefined, pageParam),
-    getNextPageParam: (lastPage) => {
-      return lastPage.page < lastPage.totalPages
-        ? lastPage.page + 1
-        : undefined;
-    },
+    queryFn: ({ pageParam = 1 }) => getCampers(filters, PER_PAGE, pageParam),
+    getNextPageParam: (lastPage) =>
+      lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
+    staleTime: 0,
+    cacheTime: 0,
+    refetchOnMount: "always",
   });
 
   const campers = data?.pages.flatMap((page) => page.campers) ?? [];

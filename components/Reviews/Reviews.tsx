@@ -6,6 +6,7 @@ import Button from "../Button/Button";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getReviewsByCamperId, postBooking } from "@/api/campersApi";
 import toast from "react-hot-toast";
+import Loader from "../Loader/Loader";
 
 export default function Reviews({ camperId }: { camperId: string }) {
   const {
@@ -53,7 +54,7 @@ export default function Reviews({ camperId }: { camperId: string }) {
     );
   };
 
-  if (isLoading) return <div>Loading reviews...</div>;
+  if (isLoading) return <Loader />;
   if (isError) return <div>Failed to load reviews</div>;
 
   return (

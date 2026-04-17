@@ -1,7 +1,6 @@
 import { GiCarWheel } from "react-icons/gi";
 import css from "./NotFound.module.css";
 import Link from "next/link";
-import Button from "../Button/Button";
 
 export default function NotFound() {
   return (
@@ -18,8 +17,8 @@ export default function NotFound() {
           <div className={css.road} />
         </div>
 
-        <Link href="/" className={css.link}>
-          <Button text="Go back home" type="button" />
+        <Link href="/catalog" className={css.buttonLink}>
+          View Now
         </Link>
       </div>
     </main>

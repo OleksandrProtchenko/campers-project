@@ -5,18 +5,15 @@ import Button from "../Button/Button";
 import css from "./Filters.module.css";
 import { FaRegMap } from "react-icons/fa6";
 import { IoCloseOutline } from "react-icons/io5";
-import { useQuery } from "@tanstack/react-query";
-import {
-  GetCampersByFiltersResponse,
-  getCampersFilters,
-} from "@/api/campersApi";
+
+import { GetCampersByFiltersResponse } from "@/api/campersApi";
 import normalizeNameFilters from "@/utils/normalizeNameFilters";
 
 interface FiltersProps {
-  initialFilters: GetCampersByFiltersResponse;
+  filtersData: GetCampersByFiltersResponse;
 }
 
-export default function Filters({ initialFilters }: FiltersProps) {
+export default function Filters({ filtersData }: FiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -24,6 +21,8 @@ export default function Filters({ initialFilters }: FiltersProps) {
   const form = searchParams.get("form") ?? "";
   const engine = searchParams.get("engine") ?? "";
   const transmission = searchParams.get("transmission") ?? "";
+
+  const paramsKey = [location, form, engine, transmission].join("|");
 
   const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -50,28 +49,8 @@ export default function Filters({ initialFilters }: FiltersProps) {
     router.push("/catalog");
   };
 
-  const {
-    data: filtersData,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["campersFilters"],
-    queryFn: getCampersFilters,
-    initialData: initialFilters,
-    staleTime: 5 * 60 * 1000,
-    refetchOnMount: false,
-  });
-
-  if (isError && !filtersData) {
-    return <div>Failed to load filters</div>;
-  }
-
-  if (!filtersData) {
-    return <div>Loading filters...</div>;
-  }
-
   return (
-    <form onSubmit={handleSubmit} className={css.form}>
+    <form key={paramsKey} onSubmit={handleSubmit} className={css.form}>
       <fieldset
         className={`${css.fieldLocation} ${css.fieldsReset} ${css.firstField}`}
       >

@@ -2,7 +2,6 @@
 import Image from "next/image";
 import css from "./CatalogItem.module.css";
 import { Camper } from "@/api/campersApi";
-import Button from "../Button/Button";
 import Link from "next/link";
 import { FaGasPump } from "react-icons/fa";
 import { TbManualGearbox } from "react-icons/tb";
@@ -63,8 +62,9 @@ export default function CatalogItem({ camper }: CatalogItemProps) {
           href={`/catalog/${camper.id}`}
           target="_blank"
           rel="noopener noreferrer"
+          className={css.buttonLink}
         >
-          <Button type="button" text="Show more" />
+          Show more
         </Link>
       </div>
     </li>
