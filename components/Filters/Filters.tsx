@@ -23,11 +23,11 @@ export default function Filters({ filtersData }: FiltersProps) {
   const engine = searchParams.get("engine") ?? "";
   const transmission = searchParams.get("transmission") ?? "";
 
-  const paramsKey = [location, form, engine, transmission].join("|");
+  const paramsKeys = [location, form, engine, transmission].join("|");
 
   return (
     <FiltersForm
-      key={paramsKey}
+      key={paramsKeys}
       router={router}
       filtersData={filtersData}
       initialLocation={location}
