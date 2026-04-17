@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TravelTrucks
 
-## Getting Started
+A web application for browsing and viewing campers with filtering, pagination, a detailed camper page, reviews, and a booking form.
 
-First, run the development server:
+## Description
+
+TravelTrucks is a Next.js + TypeScript app where users can:
+
+- Go from the home page to the camper catalog.
+- Filter campers by location, body type, engine type, and transmission.
+- Load more camper cards with a Load More button.
+- Open a specific camper page in a new browser tab.
+- View the gallery, technical details, and reviews with a 5-star rating.
+- Submit a booking form and receive a success notification.
+
+## Key Features
+
+- Home page with a CTA button (View Now)
+- Camper catalog with backend filtering via query parameters
+- Load More pagination (4 cards per request)
+- Camper details page
+- Image gallery built with Swiper
+- Reviews section with 5-star visualization
+- Booking form submission to API endpoint
+- Success/error notifications
+- Loader for async states
+- SEO metadata for pages
+
+## Routes
+
+- / - home page
+- /catalog - camper catalog
+- /catalog/[camperId] - camper details page
+
+## Tech Stack
+
+- Next.js (App Router)
+- TypeScript
+- TanStack Query (useInfiniteQuery)
+- Axios
+- Swiper
+- React Icons
+- React Hot Toast
+- CSS Modules
+
+## Project Structure
+
+Main directories:
+
+- app - routes and layout
+- components - UI components
+- api - backend request layer
+- utils - helpers and normalization functions
+- public - static assets
+
+## Installation and Run
+
+### Requirements
+
+- Node.js 18+ (latest LTS recommended)
+
+### Steps
+
+1. Clone the repository.
+2. Create your local environment file based on `.env.example`:
+
+```bash
+cp .env.example .env
+```
+
+3. Install dependencies:
+
+```bash
+npm install
+```
+
+4. Run in development mode:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open in browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Available Scripts
 
-## Learn More
+- npm run dev - run development server
+- npm run build - build production bundle
+- npm run start - run production server
+- npm run lint - run linter
 
-To learn more about Next.js, take a look at the following resources:
+## Repository
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+GitHub: https://github.com/OleksandrProtchenko/campers-project
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Live Demo
 
-## Deploy on Vercel
+Vercel: https://campers-project-umber.vercel.app/
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Name: Oleksandr Protchenko
+Contact: alexfullstackdev92@gmail.com
