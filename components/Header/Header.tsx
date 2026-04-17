@@ -15,6 +15,7 @@ export default function Header() {
             alt="Logo"
             width={136}
             height={16}
+            loading="eager"
           />
         </Link>
         <nav className={css.nav}>

@@ -1,7 +1,7 @@
 import { FaStar } from "react-icons/fa";
 import { FaRegMap } from "react-icons/fa6";
 import css from "./CamperDetails.module.css";
-import { Camper } from "@/api/campers";
+import { Camper } from "@/api/campersApi";
 
 interface CamperDetailsProps {
   camper: Camper;

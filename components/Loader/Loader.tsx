@@ -9,7 +9,7 @@ export default function Loader() {
           src="/camper.jpg"
           alt="camper"
           className={css.image}
-          width={100}
+          width={200}
           height={100}
         />
       </div>

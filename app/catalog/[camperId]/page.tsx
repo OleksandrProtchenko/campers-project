@@ -1,4 +1,4 @@
-import { Camper, getCamperById } from "@/api/campers";
+import { Camper, getCamperById } from "@/api/campersApi";
 import CamperPage from "./CamperPage.client";
 import Reviews from "@/components/Reviews/Reviews";
 import CamperDetails from "@/components/CamperDetails/CamperDetails";

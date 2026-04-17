@@ -1,5 +1,5 @@
 import css from "./CamperPage.module.css";
-import { Camper } from "@/api/campers";
+import { Camper } from "@/api/campersApi";
 import CamperGallery from "@/components/CamperGallery/CamperGallery";
 import CamperDetails from "@/components/CamperDetails/CamperDetails";
 import Reviews from "@/components/Reviews/Reviews";

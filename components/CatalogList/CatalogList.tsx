@@ -2,24 +2,13 @@
 
 import css from "./CatalogList.module.css";
 import CatalogItem from "../CatalogItem/CatalogItem";
-import { Engines, Forms, getCampers, Transmissions } from "@/api/campers";
+import { getCampers } from "@/api/campersApi";
 import Button from "../Button/Button";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import Loader from "../Loader/Loader";
-
-const PER_PAGE = 4;
-
-function normalizeFilters(searchParams: URLSearchParams) {
-  const location = searchParams.get("location") || undefined;
-  const form = (searchParams.get("form") as Forms) || undefined;
-  const engine = (searchParams.get("engine") as Engines) || undefined;
-  const transmission =
-    (searchParams.get("transmission") as Transmissions) || undefined;
-
-  return { location, form, engine, transmission };
-}
+import normalizeFilters from "@/utils/normalizeFilters";
 
 export default function CatalogList() {
   const searchParams = useSearchParams();
@@ -35,7 +24,7 @@ export default function CatalogList() {
     isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: ["campers", filters],
-    queryFn: ({ pageParam = 1 }) => getCampers(filters, PER_PAGE, pageParam),
+    queryFn: ({ pageParam = 1 }) => getCampers(filters, undefined, pageParam),
     getNextPageParam: (lastPage) => {
       return lastPage.page < lastPage.totalPages
         ? lastPage.page + 1
@@ -50,11 +39,18 @@ export default function CatalogList() {
 
   return (
     <>
-      <ul className={css.catalogList}>
-        {campers.map((camper) => (
-          <CatalogItem key={camper.id} camper={camper} />
-        ))}
-      </ul>
+      {campers && campers.length > 0 && (
+        <ul className={css.catalogList}>
+          {campers.map((camper) => (
+            <CatalogItem key={camper.id} camper={camper} />
+          ))}
+        </ul>
+      )}
+      {(!campers || campers.length === 0) && (
+        <div className={css.noCampers}>
+          No campers found. Try another filters for search.
+        </div>
+      )}
       {hasNextPage && (
         <Button
           type="button"

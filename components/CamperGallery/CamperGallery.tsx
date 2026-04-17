@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
-import { Camper } from "@/api/campers";
+import { Camper } from "@/api/campersApi";
 
 import css from "./CamperGallery.module.css";
 
@@ -17,6 +17,12 @@ interface CamperGalleryProps {
 
 export default function CamperGallery({ camper }: CamperGalleryProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+
+  const handleImageError = (id: string) => {
+    setFailedImages((prev) => new Set(prev).add(id));
+  };
+
   return (
     <div className={css.galleryWrapper}>
       <Swiper
@@ -34,15 +40,21 @@ export default function CamperGallery({ camper }: CamperGalleryProps) {
         className={`${css.mySwiper2} ${css.mbottomSwiper}`}
       >
         {camper.gallery.length > 0 &&
-          camper.gallery.map((image) => {
+          camper.gallery.map((image, index) => {
             return (
               <SwiperSlide key={image.id}>
                 <Image
                   className={css.swiperSlideImage}
-                  src={image.original}
+                  src={
+                    failedImages.has(image.id)
+                      ? "/placeholderCamper.png"
+                      : image.original
+                  }
+                  onError={() => handleImageError(image.id)}
                   alt={camper.name}
                   width={638}
                   height={505}
+                  priority={index === 0}
                 />
               </SwiperSlide>
             );
@@ -64,7 +76,12 @@ export default function CamperGallery({ camper }: CamperGalleryProps) {
               <SwiperSlide key={image.id}>
                 <Image
                   className={css.swiperSlideImage}
-                  src={image.thumb}
+                  src={
+                    failedImages.has(image.id)
+                      ? "/placeholderCamper.png"
+                      : image.thumb
+                  }
+                  onError={() => handleImageError(image.id)}
                   alt={camper.name}
                   width={135}
                   height={145}

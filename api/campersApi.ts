@@ -61,29 +61,47 @@ export interface FiltersParams {
   engine?: Engines;
 }
 
+export interface GetCampersByFiltersResponse {
+  forms: Forms[];
+  transmissions: Transmissions[];
+  engines: Engines[];
+}
+
 export const getCampers = async (
   filters?: FiltersParams,
   perPage = 4,
   page = 1,
 ): Promise<GetCampersResponse> => {
-  const { data } = await API.get<GetCampersResponse>("/campers", {
-    params: {
-      perPage,
-      page,
-      ...filters,
-    },
-  });
-  return data;
+  try {
+    const { data } = await API.get<GetCampersResponse>("/campers", {
+      params: {
+        perPage,
+        page,
+        ...filters,
+      },
+    });
+    return data;
+  } catch {
+    throw new Error("Failed to fetch campers");
+  }
 };
 
 export const getCamperById = async (id: string): Promise<Camper> => {
-  const { data } = await API.get<Camper>(`/campers/${id}`);
-  return data;
+  try {
+    const { data } = await API.get<Camper>(`/campers/${id}`);
+    return data;
+  } catch {
+    throw new Error("Failed to fetch camper by ID");
+  }
 };
 
-export const getCampersByFilters = async (params: FiltersParams) => {
-  const { data } = await API.get<GetCampersResponse>("/campers/filters", {
-    params,
-  });
-  return data;
-};
+export const getCampersFilters =
+  async (): Promise<GetCampersByFiltersResponse> => {
+    try {
+      const { data } =
+        await API.get<GetCampersByFiltersResponse>("/campers/filters");
+      return data;
+    } catch {
+      throw new Error("Failed to fetch campers by filters");
+    }
+  };

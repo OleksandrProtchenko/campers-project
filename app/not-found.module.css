@@ -3,8 +3,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #05060a;
-  color: #f5f5f5;
   padding: 24px;
 }
 
@@ -17,7 +15,7 @@
   font-size: 64px;
   font-weight: 700;
   letter-spacing: 4px;
-  color: #7ecbff;
+  color: #829b91;
   margin-bottom: 8px;
 }
 
@@ -25,6 +23,29 @@
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 8px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid currentColor;
+  width: 0;
+  animation:
+    typing 2.2s steps(15, end) forwards,
+    blink-caret 0.7s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 15ch;
+  }
+}
+
+@keyframes blink-caret {
+  50% {
+    border-color: transparent;
+  }
 }
 
 .text {
@@ -32,61 +53,22 @@
   color: #9ca3af;
   margin-bottom: 24px;
 }
-
-/* Блок с кемпером */
-.camperWrapper {
-  position: relative;
-  height: 120px;
-  margin-bottom: 24px;
-}
-
-.road {
-  position: absolute;
-  left: 50%;
-  bottom: 24px;
-  transform: translateX(-50%);
-  width: 260px;
-  height: 2px;
-  background: linear-gradient(90deg, #1f2933 0, #4b5563 50%, #1f2933 100%);
-  opacity: 0.7;
-}
-
-.camper {
-  transform: translateX(-50%);
-  animation: float 1.2s ease-in-out infinite;
-}
-
 .link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 18px;
-  border-radius: 999px;
-  border: 1px solid #374151;
-  color: #e5e7eb;
-  font-size: 14px;
-  text-decoration: none;
-  background: radial-gradient(circle at top left, #111827, #020617);
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.1s ease;
 }
-
-.link:hover {
-  border-color: #7ecbff;
-  background: radial-gradient(circle at top left, #020617, #020617);
-  transform: translateY(-1px);
+.iconWheel {
+  width: 53px;
+  height: 53px;
+  animation: icon-wheel-spin 2s linear infinite;
+  transform-origin: center;
 }
-
-@keyframes float {
-  0% {
-    transform: translate(-50%, 0);
+@keyframes icon-wheel-spin {
+  from {
+    transform: rotate(0deg);
   }
-  50% {
-    transform: translate(-50%, -6px);
-  }
-  100% {
-    transform: translate(-50%, 0);
+  to {
+    transform: rotate(360deg);
   }
 }
