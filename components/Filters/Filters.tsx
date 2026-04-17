@@ -59,7 +59,7 @@ function FiltersForm({
   const [transmissionValue, setTransmissionValue] =
     useState(initialTransmission);
 
-  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const params = new URLSearchParams();
     const location = locationValue.trim();
@@ -67,13 +67,19 @@ function FiltersForm({
     if (formValue) params.set("form", formValue);
     if (engineValue) params.set("engine", engineValue);
     if (transmissionValue) params.set("transmission", transmissionValue);
-    router.push(
+
+    router.replace(
       "/catalog" + (params.toString() ? "?" + params.toString() : ""),
     );
   };
 
   const handleReset = () => {
-    router.push("/catalog");
+    setLocationValue("");
+    setFormValue("");
+    setEngineValue("");
+    setTransmissionValue("");
+
+    router.replace("/catalog");
   };
 
   return (
@@ -100,65 +106,56 @@ function FiltersForm({
 
       <fieldset className={css.fieldsReset}>
         <legend className={css.legend}>Camper form</legend>
-        {filtersData.forms.length > 0 &&
-          filtersData.forms.map((formOption) => {
-            return (
-              <label className={css.label} key={formOption}>
-                <input
-                  className={css.radio}
-                  type="radio"
-                  name="form"
-                  value={formOption}
-                  checked={formValue === formOption}
-                  onChange={() => setFormValue(formOption)}
-                />
-                <span className={css.radio__custom}></span>
-                {normalizeNameFilters(formOption)}
-              </label>
-            );
-          })}
+        {filtersData.forms.map((formOption) => (
+          <label className={css.label} key={formOption}>
+            <input
+              className={css.radio}
+              type="radio"
+              name="form"
+              value={formOption}
+              checked={formValue === formOption}
+              onChange={() => setFormValue(formOption)}
+            />
+            <span className={css.radio__custom}></span>
+            {normalizeNameFilters(formOption)}
+          </label>
+        ))}
       </fieldset>
 
       <fieldset className={css.fieldsReset}>
         <legend className={css.legend}>Engine</legend>
-        {filtersData.engines.length > 0 &&
-          filtersData.engines.map((engineOption) => {
-            return (
-              <label className={css.label} key={engineOption}>
-                <input
-                  className={css.radio}
-                  type="radio"
-                  name="engine"
-                  value={engineOption}
-                  checked={engineValue === engineOption}
-                  onChange={() => setEngineValue(engineOption)}
-                />
-                <span className={css.radio__custom}></span>
-                {normalizeNameFilters(engineOption)}
-              </label>
-            );
-          })}
+        {filtersData.engines.map((engineOption) => (
+          <label className={css.label} key={engineOption}>
+            <input
+              className={css.radio}
+              type="radio"
+              name="engine"
+              value={engineOption}
+              checked={engineValue === engineOption}
+              onChange={() => setEngineValue(engineOption)}
+            />
+            <span className={css.radio__custom}></span>
+            {normalizeNameFilters(engineOption)}
+          </label>
+        ))}
       </fieldset>
 
       <fieldset className={`${css.fieldsReset} ${css.lastField}`}>
         <legend className={css.legend}>Transmission</legend>
-        {filtersData.transmissions.length > 0 &&
-          filtersData.transmissions.map((transmissionOption) => {
-            return (
-              <label className={css.label} key={transmissionOption}>
-                <input
-                  className={css.radio}
-                  type="radio"
-                  name="transmission"
-                  value={transmissionOption}
-                  checked={transmissionValue === transmissionOption}
-                  onChange={() => setTransmissionValue(transmissionOption)}
-                />
-                <span className={css.radio__custom}></span>
-                {normalizeNameFilters(transmissionOption)}
-              </label>
-            );
-          })}
+        {filtersData.transmissions.map((transmissionOption) => (
+          <label className={css.label} key={transmissionOption}>
+            <input
+              className={css.radio}
+              type="radio"
+              name="transmission"
+              value={transmissionOption}
+              checked={transmissionValue === transmissionOption}
+              onChange={() => setTransmissionValue(transmissionOption)}
+            />
+            <span className={css.radio__custom}></span>
+            {normalizeNameFilters(transmissionOption)}
+          </label>
+        ))}
       </fieldset>
 
       <Button type="submit" class={css.searchBtn} text="Search" />
