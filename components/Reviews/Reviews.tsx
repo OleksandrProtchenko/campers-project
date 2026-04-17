@@ -4,7 +4,11 @@ import { FaStar } from "react-icons/fa";
 import css from "./Reviews.module.css";
 import Button from "../Button/Button";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getReviewsByCamperId, postBooking } from "@/api/campersApi";
+import {
+  BookingPostData,
+  getReviewsByCamperId,
+  postBooking,
+} from "@/api/campersApi";
 import toast from "react-hot-toast";
 import Loader from "../Loader/Loader";
 
@@ -20,7 +24,7 @@ export default function Reviews({ camperId }: { camperId: string }) {
   });
 
   const { mutate, isPending } = useMutation({
-    mutationFn: (bookingData: { name: string; email: string }) =>
+    mutationFn: (bookingData: BookingPostData) =>
       postBooking(camperId, bookingData),
     onSuccess: (message) => {
       toast.success(message || "Booking request sent successfully");

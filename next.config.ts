@@ -9,10 +9,6 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "ac.goit.global",
       },
-      {
-        protocol: "https",
-        hostname: "swiperjs.com",
-      },
     ],
   },
 };

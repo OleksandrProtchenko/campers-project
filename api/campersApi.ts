@@ -11,28 +11,9 @@ type Amenities =
   | "gas"
   | "water";
 
-export interface Camper {
-  id: string;
-  name: string;
-  price: number;
-  rating: number;
-  location: string;
-  description: string;
-  form: string;
-  length: string;
-  width: string;
-  height: string;
-  tank: string;
-  consumption: string;
-  transmission: string;
-  engine: string;
-  amenities: Amenities[];
-  createdAt: string;
-  updatedAt: string;
-  coverImage: string;
-  totalReviews: number;
-  gallery: CamperGallery[];
-}
+export type Forms = "alcove" | "panel_van" | "integrated" | "semi_integrated";
+export type Engines = "diesel" | "petrol" | "hybrid" | "electric";
+export type Transmissions = "automatic" | "manual";
 
 export interface CamperGallery {
   id: string;
@@ -42,6 +23,28 @@ export interface CamperGallery {
   order: number;
 }
 
+export interface Camper {
+  id: string;
+  name: string;
+  price: number;
+  rating: number;
+  location: string;
+  description?: string;
+  form: Forms;
+  length: string;
+  width: string;
+  height: string;
+  tank: string;
+  consumption: string;
+  transmission: Transmissions;
+  engine: Engines;
+  amenities: Amenities[];
+  createdAt?: string;
+  updatedAt?: string;
+  coverImage: string;
+  totalReviews: number;
+  gallery?: CamperGallery[];
+}
 export interface GetCampersResponse {
   page: number;
   perPage: number;
@@ -50,9 +53,19 @@ export interface GetCampersResponse {
   campers: Camper[];
 }
 
-export type Forms = "alcove" | "panel_van" | "integrated" | "semi_integrated";
-export type Engines = "diesel" | "petrol" | "hybrid" | "electric";
-export type Transmissions = "automatic" | "manual";
+export interface Review {
+  id: string;
+  camperId: string;
+  reviewer_name: string;
+  reviewer_rating: number;
+  comment: string;
+  createdAt: string;
+}
+
+export interface BookingPostData {
+  name: string;
+  email: string;
+}
 
 export interface FiltersParams {
   location?: string;
@@ -106,15 +119,6 @@ export const getCampersFilters =
     }
   };
 
-interface Review {
-  id: string;
-  camperId: string;
-  reviewer_name: string;
-  reviewer_rating: number;
-  comment: string;
-  createdAt: string;
-}
-
 export const getReviewsByCamperId = async (id: string): Promise<Review[]> => {
   try {
     const { data } = await API.get<Review[]>(`/campers/${id}/reviews`);
@@ -123,11 +127,6 @@ export const getReviewsByCamperId = async (id: string): Promise<Review[]> => {
     throw new Error("Failed to fetch reviews by camper ID");
   }
 };
-
-interface BookingPostData {
-  name: string;
-  email: string;
-}
 
 export const postBooking = async (
   id: string,
