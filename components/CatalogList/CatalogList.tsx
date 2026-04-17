@@ -15,7 +15,11 @@ const PER_PAGE = 4;
 export default function CatalogList() {
   const searchParams = useSearchParams();
 
-  const filters = useMemo(() => normalizeFilters(searchParams), [searchParams]);
+  const query = searchParams.toString();
+  const filters = useMemo(
+    () => normalizeFilters(new URLSearchParams(query)),
+    [query],
+  );
 
   const {
     data,

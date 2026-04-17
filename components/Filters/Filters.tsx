@@ -46,7 +46,7 @@ export default function Filters({ filtersData }: FiltersProps) {
   };
 
   const handleReset = () => {
-    router.push("/catalog");
+    router.replace("/catalog");
   };
 
   return (
@@ -135,7 +135,7 @@ export default function Filters({ filtersData }: FiltersProps) {
       <Button type="submit" class={css.searchBtn} text="Search" />
       <Button
         onClick={handleReset}
-        type="reset"
+        type="button"
         class={css.clearBtn}
         text="Clear filters"
         icon={<IoCloseOutline className={css.clearIcon} />}
