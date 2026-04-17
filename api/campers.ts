@@ -31,6 +31,15 @@ export interface Camper {
   updatedAt: string;
   coverImage: string;
   totalReviews: number;
+  gallery: CamperGallery[];
+}
+
+export interface CamperGallery {
+  id: string;
+  camperId: string;
+  thumb: string;
+  original: string;
+  order: number;
 }
 
 export interface GetCampersResponse {
@@ -46,6 +55,7 @@ export type Engines = "diesel" | "petrol" | "hybrid" | "electric";
 export type Transmissions = "automatic" | "manual";
 
 export interface FiltersParams {
+  location?: string;
   form?: Forms;
   transmission?: Transmissions;
   engine?: Engines;

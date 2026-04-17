@@ -1,26 +1,33 @@
 import { FaStar } from "react-icons/fa";
 import { FaRegMap } from "react-icons/fa6";
 import css from "./CamperDetails.module.css";
+import { Camper } from "@/api/campers";
 
-export default function CamperDetails() {
+interface CamperDetailsProps {
+  camper: Camper;
+}
+
+export default function CamperDetails({ camper }: CamperDetailsProps) {
   return (
     <div className={css.camperDetailsWrapper}>
       <div>
         <div className={css.camperDetailsHeader}>
-          <h2 className={css.camperDetailsTitle}>Mavericks</h2>
+          <h2 className={css.camperDetailsTitle}>{camper.name}</h2>
           <div className={css.ratingLocation}>
             <div className={css.rating}>
               <FaStar className={css.iconStar} />
-              <p>4.4 {`(2 reviews)`}</p>
+              <p>
+                {camper.rating} {`(${camper.totalReviews} reviews)`}
+              </p>
             </div>
             <div className={css.location}>
               <FaRegMap className={css.locationIcon} />
-              <p>Kyiv, Ukraine</p>
+              <p>{camper.location}</p>
             </div>
           </div>
-          <p className={css.price}>€8000</p>
+          <p className={css.price}>€{camper.price}</p>
           <p className={css.description}>
-            Embrace simplicity and freedom with the Mavericks panel truck, an
+            {camper.description}
             ideal choice for solo travelers or couples seeking a compact and
             efficient way to explore the open roads. This no-frills yet reliable
             panel truck offers the essentials for a comfortable journey, making
@@ -31,38 +38,40 @@ export default function CamperDetails() {
         <div className={css.camperComplictations}>
           <h3 className={css.camperComplictationsTitle}>Vehicle details</h3>
           <ul className={css.camperComplictationsList}>
-            <li className={css.camperComplictationsItem}>Automatic</li>
-            <li className={css.camperComplictationsItem}>AC</li>
-            <li className={css.camperComplictationsItem}>Petrol</li>
-            <li className={css.camperComplictationsItem}>Kitchen</li>
-            <li className={css.camperComplictationsItem}>Radio</li>
-            <li className={css.camperComplictationsItem}>Alcove</li>
+            {camper.amenities.length > 0 &&
+              camper.amenities.map((amenity) => {
+                return (
+                  <li key={amenity} className={css.camperComplictationsItem}>
+                    {amenity}
+                  </li>
+                );
+              })}
           </ul>
           <table className={css.camperComplictationsTable}>
             <tbody>
               <tr>
                 <td>Form</td>
-                <td className={css.camperSecondColumn}>Panel truck</td>
+                <td className={css.camperSecondColumn}>{camper.form}</td>
               </tr>
               <tr>
                 <td>Length</td>
-                <td className={css.camperSecondColumn}>5.4 m</td>
+                <td className={css.camperSecondColumn}>{camper.length}</td>
               </tr>
               <tr>
                 <td>Width</td>
-                <td className={css.camperSecondColumn}>2.01 m</td>
+                <td className={css.camperSecondColumn}>{camper.width}</td>
               </tr>
               <tr>
                 <td>Height</td>
-                <td className={css.camperSecondColumn}>2.05 m</td>
+                <td className={css.camperSecondColumn}>{camper.height}</td>
               </tr>
               <tr>
                 <td>Tank</td>
-                <td className={css.camperSecondColumn}>132 I</td>
+                <td className={css.camperSecondColumn}>{camper.tank}</td>
               </tr>
               <tr>
                 <td>Consumption</td>
-                <td className={css.camperSecondColumn}>12.4l/100km</td>
+                <td className={css.camperSecondColumn}>{camper.consumption}</td>
               </tr>
             </tbody>
           </table>

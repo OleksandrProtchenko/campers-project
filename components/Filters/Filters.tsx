@@ -1,12 +1,31 @@
 "use client";
+
+import { useRouter } from "next/navigation";
 import Button from "../Button/Button";
 import css from "./Filters.module.css";
 import { FaRegMap } from "react-icons/fa6";
 import { IoCloseOutline } from "react-icons/io5";
 
 export default function Filters() {
+  const router = useRouter();
+  const handleSubmit = (formData: FormData) => {
+    const { location, form, engine, transmission } = Object.fromEntries(
+      formData.entries(),
+    );
+
+    const searchParams = new URLSearchParams();
+    if (location) searchParams.set("location", location.toString());
+    if (form) searchParams.set("form", form.toString());
+    if (engine) searchParams.set("engine", engine.toString());
+    if (transmission) searchParams.set("transmission", transmission.toString());
+
+    router.push(`/catalog?${searchParams.toString()}`);
+  };
+  const handleReset = () => {
+    router.push("/catalog");
+  };
   return (
-    <form className={css.form}>
+    <form action={handleSubmit} className={css.form}>
       <fieldset
         className={`${css.fieldLocation} ${css.fieldsReset} ${css.firstField}`}
       >
@@ -138,6 +157,7 @@ export default function Filters() {
 
       <Button type="submit" class={css.searchBtn} text="Search" />
       <Button
+        onClick={handleReset}
         type="reset"
         class={css.clearBtn}
         text="Clear filters"

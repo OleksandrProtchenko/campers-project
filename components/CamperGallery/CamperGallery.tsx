@@ -1,13 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
+import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+
+import { Camper } from "@/api/campers";
 
 import css from "./CamperGallery.module.css";
-import { FreeMode, Navigation, Thumbs } from "swiper/modules";
-import Image from "next/image";
-export default function CamperGallery() {
+
+interface CamperGalleryProps {
+  camper: Camper;
+}
+
+export default function CamperGallery({ camper }: CamperGalleryProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   return (
     <div className={css.galleryWrapper}>
@@ -25,42 +33,20 @@ export default function CamperGallery() {
         modules={[FreeMode, Navigation, Thumbs]}
         className={`${css.mySwiper2} ${css.mbottomSwiper}`}
       >
-        <SwiperSlide>
-          <Image
-            className={css.swiperSlideImage}
-            src="https://swiperjs.com/demos/images/abstract-1.jpg"
-            alt="Abstract 1"
-            width={638}
-            height={505}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            className={css.swiperSlideImage}
-            src="https://swiperjs.com/demos/images/abstract-2.jpg"
-            alt="Abstract 2"
-            width={638}
-            height={505}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            className={css.swiperSlideImage}
-            src="https://swiperjs.com/demos/images/abstract-3.jpg"
-            alt="Abstract 3"
-            width={638}
-            height={505}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            className={css.swiperSlideImage}
-            src="https://swiperjs.com/demos/images/abstract-4.jpg"
-            alt="Abstract 4"
-            width={638}
-            height={505}
-          />
-        </SwiperSlide>
+        {camper.gallery.length > 0 &&
+          camper.gallery.map((image) => {
+            return (
+              <SwiperSlide key={image.id}>
+                <Image
+                  className={css.swiperSlideImage}
+                  src={image.original}
+                  alt={camper.name}
+                  width={638}
+                  height={505}
+                />
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
       <Swiper
         onSwiper={setThumbsSwiper}
@@ -72,42 +58,20 @@ export default function CamperGallery() {
         modules={[FreeMode, Navigation, Thumbs]}
         className={`${css.mySwiper} ${css.mbottomSwiper}`}
       >
-        <SwiperSlide>
-          <Image
-            className={css.swiperSlideImage}
-            src="https://swiperjs.com/demos/images/abstract-1.jpg"
-            alt="Abstract 1"
-            width={135}
-            height={145}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            className={css.swiperSlideImage}
-            src="https://swiperjs.com/demos/images/abstract-2.jpg"
-            alt="Abstract 2"
-            width={135}
-            height={145}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            className={css.swiperSlideImage}
-            src="https://swiperjs.com/demos/images/abstract-3.jpg"
-            alt="Abstract 3"
-            width={135}
-            height={145}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            className={css.swiperSlideImage}
-            src="https://swiperjs.com/demos/images/abstract-4.jpg"
-            alt="Abstract 4"
-            width={135}
-            height={145}
-          />
-        </SwiperSlide>
+        {camper.gallery.length > 0 &&
+          camper.gallery.map((image) => {
+            return (
+              <SwiperSlide key={image.id}>
+                <Image
+                  className={css.swiperSlideImage}
+                  src={image.thumb}
+                  alt={camper.name}
+                  width={135}
+                  height={145}
+                />
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
     </div>
   );

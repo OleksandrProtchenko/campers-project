@@ -78,7 +78,8 @@
 .camperComplictationsList {
   list-style: none;
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 6px;
   margin-bottom: 16px;
   padding-bottom: 14px;
   border-bottom: 1px solid #dadde1;

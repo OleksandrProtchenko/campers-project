@@ -6,6 +6,7 @@ interface ButtonProps {
   class?: string;
   text: string;
   icon?: React.ReactNode;
+  disabled?: boolean;
 }
 
 export default function Button({
