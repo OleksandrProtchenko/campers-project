@@ -1,5 +1,11 @@
-.camperContent {
+.camperPageWrapper {
   padding: 64px 0 88px;
+  width: 1313px;
+  margin: 0 auto;
+}
+
+.camperContent {
   display: flex;
   gap: 24px;
+  margin-bottom: 88px;
 }

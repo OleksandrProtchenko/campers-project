@@ -1,0 +1,118 @@
+.camperDetailsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 650px;
+}
+
+.camperDetailsHeader {
+  background: #f7f7f7;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.camperDetailsTitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: #101828;
+  margin-bottom: 8px;
+}
+.ratingLocation {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #101828;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.iconStar {
+  fill: #ffc531;
+  width: 16px;
+  height: 16px;
+}
+.location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.locationIcon {
+  width: 16px;
+  height: 16px;
+}
+.price {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: #101828;
+
+  margin-bottom: 24px;
+}
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #475467;
+}
+.camperComplictations {
+  background: #f7f7f7;
+  border-radius: 16px;
+  padding: 24px;
+}
+.camperComplictationsTitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: #101828;
+  margin-bottom: 16px;
+}
+.camperComplictationsList {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #dadde1;
+}
+.camperComplictationsItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+  border-radius: 100px;
+  padding: 12px 18px;
+  width: 115px;
+  height: 48px;
+
+  background: #f2f4f7;
+  mix-blend-mode: multiply;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  color: #101828;
+}
+.camperComplictationsTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 6px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #101828;
+}
+.camperSecondColumn {
+  text-align: right;
+}

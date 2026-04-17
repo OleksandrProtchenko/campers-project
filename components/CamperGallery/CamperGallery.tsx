@@ -23,7 +23,7 @@ export default function CamperGallery() {
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className={css.mySwiper2}
+        className={`${css.mySwiper2} ${css.mbottomSwiper}`}
       >
         <SwiperSlide>
           <Image
@@ -70,15 +70,15 @@ export default function CamperGallery() {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className={css.mySwiper}
+        className={`${css.mySwiper} ${css.mbottomSwiper}`}
       >
         <SwiperSlide>
           <Image
             className={css.swiperSlideImage}
             src="https://swiperjs.com/demos/images/abstract-1.jpg"
             alt="Abstract 1"
-            width={136}
-            height={144}
+            width={135}
+            height={145}
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -86,8 +86,8 @@ export default function CamperGallery() {
             className={css.swiperSlideImage}
             src="https://swiperjs.com/demos/images/abstract-2.jpg"
             alt="Abstract 2"
-            width={136}
-            height={144}
+            width={135}
+            height={145}
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -95,8 +95,8 @@ export default function CamperGallery() {
             className={css.swiperSlideImage}
             src="https://swiperjs.com/demos/images/abstract-3.jpg"
             alt="Abstract 3"
-            width={136}
-            height={144}
+            width={135}
+            height={145}
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -104,8 +104,8 @@ export default function CamperGallery() {
             className={css.swiperSlideImage}
             src="https://swiperjs.com/demos/images/abstract-4.jpg"
             alt="Abstract 4"
-            width={136}
-            height={144}
+            width={135}
+            height={145}
           />
         </SwiperSlide>
       </Swiper>

@@ -4,18 +4,13 @@ import css from "./CatalogItem.module.css";
 import { Camper } from "@/api/campers";
 import { useRouter } from "next/navigation";
 import Button from "../Button/Button";
+import Link from "next/link";
 
 interface CatalogItemProps {
   camper: Camper;
 }
 
 export default function CatalogItem({ camper }: CatalogItemProps) {
-  const router = useRouter();
-
-  const handleClick = () => {
-    router.push(`/catalog/${camper.id}`);
-  };
-
   return (
     <li className={css.catalogItem}>
       <Image
@@ -60,7 +55,13 @@ export default function CatalogItem({ camper }: CatalogItemProps) {
             <p>{camper.form}</p>
           </li>
         </ul>
-        <Button onClick={handleClick} type="button" text="Show more" />
+        <Link
+          href={`/catalog/${camper.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button type="button" text="Show more" />
+        </Link>
       </div>
     </li>
   );

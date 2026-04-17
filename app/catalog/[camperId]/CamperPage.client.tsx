@@ -18,7 +18,7 @@ export default function CamperPage({ camper }: { camper: Camper }) {
     coverImage,
   } = camper;
   return (
-    <div>
+    <div className={css.camperPageWrapper}>
       <div className={css.camperContent}>
         <CamperGallery />
         <CamperDetails />
