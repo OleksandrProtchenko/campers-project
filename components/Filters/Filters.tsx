@@ -49,7 +49,7 @@ export default function Filters({ filtersData }: FiltersProps) {
     setEngine("");
     setTransmission("");
 
-    router.replace("/catalog", { scroll: false });
+    router.push("/catalog", { scroll: false });
   };
 
   return (
