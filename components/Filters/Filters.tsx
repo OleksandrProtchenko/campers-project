@@ -47,6 +47,7 @@ export default function Filters({ filtersData }: FiltersProps) {
 
   const handleReset = () => {
     router.replace("/catalog");
+    router.refresh();
   };
 
   return (

@@ -29,7 +29,7 @@ export default function CatalogList() {
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ["campers", filters],
+    queryKey: ["campers", query],
     queryFn: ({ pageParam = 1 }) => getCampers(filters, PER_PAGE, pageParam),
     getNextPageParam: (lastPage) =>
       lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
