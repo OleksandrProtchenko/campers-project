@@ -16,10 +16,6 @@ export default function CatalogList() {
   const searchParams = useSearchParams();
 
   const query = searchParams.toString();
-  const filters = useMemo(
-    () => normalizeFilters(new URLSearchParams(query)),
-    [query],
-  );
 
   const {
     data,
@@ -30,7 +26,12 @@ export default function CatalogList() {
     isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: ["campers", query],
-    queryFn: ({ pageParam = 1 }) => getCampers(filters, PER_PAGE, pageParam),
+    queryFn: ({ pageParam = 1 }) =>
+      getCampers(
+        normalizeFilters(new URLSearchParams(query)),
+        PER_PAGE,
+        pageParam,
+      ),
     getNextPageParam: (lastPage) =>
       lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
     staleTime: 0,
