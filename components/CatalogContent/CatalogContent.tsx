@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 import { getCampersFilters } from "@/api/campersApi";
 import Filters from "../Filters/Filters";
 import CatalogList from "../CatalogList/CatalogList";
@@ -8,6 +9,9 @@ import Loader from "../Loader/Loader";
 import css from "./CatalogContent.module.css";
 
 export default function CatalogContent() {
+  const searchParams = useSearchParams();
+  const query = searchParams.toString();
+
   const {
     data: filtersData,
     isLoading,
@@ -29,7 +33,7 @@ export default function CatalogContent() {
         <Filters filtersData={filtersData} />
       </aside>
       <main className={css.main}>
-        <CatalogList />
+        <CatalogList key={query} query={query} />
       </main>
     </div>
   );

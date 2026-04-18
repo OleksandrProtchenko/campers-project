@@ -4,18 +4,17 @@ import css from "./CatalogList.module.css";
 import CatalogItem from "../CatalogItem/CatalogItem";
 import { getCampers } from "@/api/campersApi";
 import Button from "../Button/Button";
-import { useSearchParams } from "next/navigation";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import Loader from "../Loader/Loader";
 import normalizeFilters from "@/utils/normalizeFilters";
 
 const PER_PAGE = 4;
 
-export default function CatalogList() {
-  const searchParams = useSearchParams();
+interface CatalogListProps {
+  query: string;
+}
 
-  const query = searchParams.toString();
-
+export default function CatalogList({ query }: CatalogListProps) {
   const {
     data,
     isLoading,
