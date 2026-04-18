@@ -99,7 +99,7 @@ GitHub: https://github.com/OleksandrProtchenko/campers-project
 
 ## Live Demo
 
-Vercel: https://campers-project-umber.vercel.app/
+Vercel: https://campers-project-psi.vercel.app/
 
 ## Author
 
