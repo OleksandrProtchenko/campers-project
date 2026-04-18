@@ -14,8 +14,15 @@ interface FiltersProps {
   filtersData: GetCampersByFiltersResponse;
 }
 
+interface FiltersFormProps {
+  filtersData: GetCampersByFiltersResponse;
+  initialLocation: string;
+  initialForm: string;
+  initialEngine: string;
+  initialTransmission: string;
+}
+
 export default function Filters({ filtersData }: FiltersProps) {
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   const location = searchParams.get("location") ?? "";
@@ -23,12 +30,11 @@ export default function Filters({ filtersData }: FiltersProps) {
   const engine = searchParams.get("engine") ?? "";
   const transmission = searchParams.get("transmission") ?? "";
 
-  const paramsKeys = [location, form, engine, transmission].join("|");
+  const paramsKey = [location, form, engine, transmission].join("|");
 
   return (
     <FiltersForm
-      key={paramsKeys}
-      router={router}
+      key={paramsKey}
       filtersData={filtersData}
       initialLocation={location}
       initialForm={form}
@@ -39,36 +45,32 @@ export default function Filters({ filtersData }: FiltersProps) {
 }
 
 function FiltersForm({
-  router,
   filtersData,
   initialLocation,
   initialForm,
   initialEngine,
   initialTransmission,
-}: {
-  router: ReturnType<typeof useRouter>;
-  filtersData: GetCampersByFiltersResponse;
-  initialLocation: string;
-  initialForm: string;
-  initialEngine: string;
-  initialTransmission: string;
-}) {
+}: FiltersFormProps) {
+  const router = useRouter();
+
   const [locationValue, setLocationValue] = useState(initialLocation);
   const [formValue, setFormValue] = useState(initialForm);
   const [engineValue, setEngineValue] = useState(initialEngine);
   const [transmissionValue, setTransmissionValue] =
     useState(initialTransmission);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const params = new URLSearchParams();
     const location = locationValue.trim();
+
     if (location) params.set("location", location);
     if (formValue) params.set("form", formValue);
     if (engineValue) params.set("engine", engineValue);
     if (transmissionValue) params.set("transmission", transmissionValue);
 
-    router.replace(
+    router.push(
       "/catalog" + (params.toString() ? "?" + params.toString() : ""),
     );
   };
@@ -78,8 +80,7 @@ function FiltersForm({
     setFormValue("");
     setEngineValue("");
     setTransmissionValue("");
-
-    router.replace("/catalog");
+    router.push("/catalog");
   };
 
   return (
