@@ -10,14 +10,6 @@ interface FiltersProps {
   filtersData: GetCampersByFiltersResponse;
 }
 
-export interface FiltersFormProps {
-  filtersData: GetCampersByFiltersResponse;
-  initialLocation: string;
-  initialForm: string;
-  initialEngine: string;
-  initialTransmission: string;
-}
-
 export default function Filters({ filtersData }: FiltersProps) {
   const searchParams = useSearchParams();
 

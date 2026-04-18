@@ -1,13 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { FiltersFormProps } from "../Filters/Filters";
 import css from "./FiltersForm.module.css";
 import { useRouter } from "next/navigation";
 import normalizeNameFilters from "@/utils/normalizeNameFilters";
 import { IoCloseOutline } from "react-icons/io5";
 import Button from "../Button/Button";
 import { FaRegMap } from "react-icons/fa6";
+import { GetCampersByFiltersResponse } from "@/api/campersApi";
+
+interface FiltersFormProps {
+  filtersData: GetCampersByFiltersResponse;
+  initialLocation: string;
+  initialForm: string;
+  initialEngine: string;
+  initialTransmission: string;
+}
 
 export default function FiltersForm({
   filtersData,
