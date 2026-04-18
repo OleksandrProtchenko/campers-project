@@ -30,7 +30,7 @@ export default function Filters({ filtersData }: FiltersProps) {
   const engine = searchParams.get("engine") ?? "";
   const transmission = searchParams.get("transmission") ?? "";
 
-  const paramsKey = [location, form, engine, transmission].join("|");
+  const paramsKey = searchParams.toString();
 
   return (
     <FiltersForm
@@ -76,11 +76,7 @@ function FiltersForm({
   };
 
   const handleReset = () => {
-    setLocationValue("");
-    setFormValue("");
-    setEngineValue("");
-    setTransmissionValue("");
-    router.push("/catalog");
+    router.replace("/catalog", { scroll: false });
   };
 
   return (
