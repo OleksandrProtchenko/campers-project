@@ -4,6 +4,8 @@ import { Metadata } from "next";
 import CatalogContent from "@/components/CatalogContent/CatalogContent";
 import Loader from "@/components/Loader/Loader";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Camper catalog",
   description:
